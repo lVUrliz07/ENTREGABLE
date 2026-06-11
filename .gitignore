@@ -1,3 +1,6 @@
+# Ignore temp image staging folder (official copy is docs/screenshots/)
+imagenes/
+
 node_modules/
 build/
 dist/
