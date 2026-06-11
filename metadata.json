@@ -1,0 +1,8 @@
+{
+  "name": "Gestión Documental y Selección de Currículos de Yau",
+  "description": "Sistema de gestión de trámites y selección de currículos mediante machine learning para la Municipalidad Provincial de Yau, con panel de alertas y documentación del trabajo final de SENATI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

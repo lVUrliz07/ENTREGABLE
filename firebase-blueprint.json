@@ -1,0 +1,132 @@
+{
+  "entities": {
+    "Alerta": {
+      "title": "Alerta",
+      "description": "Notificación y alerta de canal municipal enviada al ciudadano.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identificador de la alerta."
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Fecha de envío de la alerta."
+        },
+        "tipo": {
+          "type": "string",
+          "enum": ["whatsapp", "email", "sms", "sistema"],
+          "description": "Canal de entrega."
+        },
+        "mensaje": {
+          "type": "string",
+          "description": "Contenido del aviso."
+        },
+        "destino": {
+          "type": "string",
+          "description": "Destinatario final de la alerta."
+        }
+      },
+      "required": ["id", "timestamp", "tipo", "mensaje", "destino"]
+    },
+    "Tramite": {
+      "title": "Tramite",
+      "description": "Documento administrativo registrado en la mesa de partes virtual de la Municipalidad de Yau.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "dni": {
+          "type": "string"
+        },
+        "nombreCiudadano": {
+          "type": "string"
+        },
+        "telefono": {
+          "type": "string"
+        },
+        "correo": {
+          "type": "string"
+        },
+        "titulo": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "categoria": {
+          "type": "string",
+          "enum": ["licencias", "obras", "registro", "tributacion", "otros"]
+        },
+        "estado": {
+          "type": "string",
+          "enum": ["recibido", "analizando", "observado", "aprobado", "denegado"]
+        },
+        "prioridad": {
+          "type": "string",
+          "enum": ["baja", "media", "alta", "critica"]
+        },
+        "fechaCreacion": {
+          "type": "string"
+        },
+        "analisisML": {
+          "type": "object",
+          "description": "Informe generado por el motor de inteligencia artificial de Yau."
+        },
+        "alertas": {
+          "type": "array",
+          "description": "Lista de alertas históricas enviadas."
+        },
+        "feedback": {
+          "type": "object",
+          "description": "Evaluación ciudadana de satisfacción una vez cerrado el trámite."
+        }
+      },
+      "required": ["id", "dni", "nombreCiudadano", "telefono", "correo", "titulo", "descripcion", "categoria", "estado", "prioridad", "fechaCreacion", "analisisML", "alertas"]
+    },
+    "Curriculum": {
+      "title": "Curriculum",
+      "description": "Postulación de perfil profesional analizado por el cribador de recursos humanos de Yau.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "nombreCandidato": {
+          "type": "string"
+        },
+        "correo": {
+          "type": "string"
+        },
+        "telefono": {
+          "type": "string"
+        },
+        "cargoPostula": {
+          "type": "string"
+        },
+        "textoCV": {
+          "type": "string"
+        },
+        "analisisML": {
+          "type": "object",
+          "description": "Resultado de la idoneidad y habilidades extraídas con Gemini."
+        },
+        "fechaCreacion": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "nombreCandidato", "correo", "telefono", "cargoPostula", "textoCV", "analisisML", "fechaCreacion"]
+    }
+  },
+  "firestore": {
+    "/tramites/{tramiteId}": {
+      "schema": "Tramite",
+      "description": "Colección de solicitudes de la mesa de partes virtual."
+    },
+    "/curriculums/{curriculumId}": {
+      "schema": "Curriculum",
+      "description": "Colección de postulaciones curriculares."
+    }
+  }
+}
